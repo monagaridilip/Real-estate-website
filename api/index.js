@@ -18,3 +18,12 @@ app.use('/api/auth',authRouter)
 app.listen(3000,()=>{
     console.log('server is running on port 3000')
 })
+app.use((err,req,res,next)=>{
+    const statusCode = err.statusCode || 500;
+    const errorMessage = err.message || "Internal Error";
+    return res.json({
+        suceess:false,
+        statusCode,
+        errorMessage
+    })
+})
