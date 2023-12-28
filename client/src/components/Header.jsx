@@ -27,7 +27,7 @@ export default function Header() {
         <ul className='flex gap-4'>
             <Link to="/"><li className='hidden sm:inline hover:underline text-slate-700 '>Home</li></Link>
             <Link to="/about"><li className='hidden sm:inline hover:underline text-slate-700 '>About</li></Link>
-            <Link to="/signout"><li className='hidden sm:inline hover:underline text-slate-700 '>SignOut</li></Link>
+            <Link to="/signin"><li className='hidden sm:inline hover:underline text-slate-700 '>Sign In</li></Link>
         </ul>
       </div>
     </header>
