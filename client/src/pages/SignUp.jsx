@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { signInStart,signInSuccess,signInFailure } from '../redux store/user/userSlice'
+import OAuth from '../components/OAuth'
 export default function SignOut() {
   const [formData,setFormData] = useState({}) 
   const {loading,error} = useSelector((state)=>state.user)
@@ -48,6 +49,7 @@ export default function SignOut() {
       <input type="email" className='p-3 rounded-lg border' placeholder='email' id='email' onChange={handleChange}/>
       <input type="password" className='p-3 rounded-lg border' placeholder='password' id='password' onChange={handleChange}/>
       <button disabled={loading} className='rounded-lg p-3 uppercase bg-slate-700 text-white hover:opacity-95 disabled:opacity-80'>{loading?'loading...':'Sign Up'}</button>
+    <OAuth/>
     </form>
     <div className='flex gap-2 mt-4'>
       <p>Have an account?</p>
