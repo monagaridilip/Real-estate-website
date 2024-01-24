@@ -2,7 +2,17 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useRef, useState } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
 import { app } from '../firebase'
-import { updateUserStart,updateUserSuccess,updateUserFailure, deleteUserStart, deleteUserFailure, deleteUserSuccess, signInStart, signOutUserStart, signOutUserFailure, signOutUserSuccess } from "../redux store/user/userSlice";
+import { updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
+  deleteUserStart,
+  deleteUserFailure,
+  deleteUserSuccess,
+  signInStart, 
+  signOutUserStart, 
+  signOutUserFailure, 
+  signOutUserSuccess } from "../redux store/user/userSlice";
+import {Link} from 'react-router-dom'
 export default function Profile() {
   const fileRef = useRef(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -38,7 +48,8 @@ export default function Profile() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
           setFormData({ ...formData, avatar: downloadURL })
-        );
+          );
+          console.log(formData.avatar)
       }
     );
   };
@@ -115,7 +126,7 @@ export default function Profile() {
          />
        <img
           onClick={() => fileRef.current.click()}
-          src={formData.avatar || currentUser.avatar}
+          src={currentUser.avatar ? currentUser.avatar : formData.avatar}
           alt='profile'
           className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2'
         />
@@ -136,6 +147,13 @@ export default function Profile() {
         >
           {loading ? 'Loading...' : 'Update'}
         </button>
+        
+        <Link to={'/create'} 
+        className="bg-green-700 text-white text-center rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 ">
+          Create Listing
+        </Link>
+        
+        
       </form>
       <div className="flex justify-between mt-4">
         <span onClick={handleDeleteUser} className="text-red-600 cursor-pointer ">Delect account</span>
