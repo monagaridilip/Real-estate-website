@@ -17,7 +17,7 @@ const ListingSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    DiscountPrice:{
+    discountPrice:{
         type:Number,
         required:true
     },
@@ -45,11 +45,11 @@ const ListingSchema = new mongoose.Schema({
         type:Boolean,
         required:true
     },
-    imageURLs:{
+    imageUrls:{
         type:Array,
         required:true
     },
-    useRef:{
+    userRef:{
         type:String,
         required:true 
     }
