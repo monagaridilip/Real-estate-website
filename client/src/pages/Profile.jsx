@@ -21,8 +21,9 @@ export default function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
-  const [showListingError,setShowListingError] = useState(false)
+  const [showListingError,setShowListingsError] = useState(false)
   const [ userListings, setUserListings] = useState([])
+  const [deleteListingError,setDeleteListingError] = useState(false);
   const dispatch = useDispatch();
   
 
@@ -119,20 +120,40 @@ export default function Profile() {
   }
 
   const handleShowListing = async () =>{
+    
     try {
-      setShowListingError(false)
-      const res = await fetch(`/api/user/listing/${currentUser._id}`)
+      setShowListingsError(false);
+      const res = await fetch(`/api/user/listing/${currentUser._id}`);
       const data = await res.json();
-      if( data.success === false){
-        setFileUploadError(true)
-        return
+      if (data.success === false) {
+        setShowListingsError(true);
+        return;
       }
-      setUserListings(data)
-      console.log(userListings)
+
+      setUserListings(data);
     } catch (error) {
-      setShowListingError(true)
+      setShowListingsError(true);
     }
   }
+
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+
+      setUserListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId)
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
@@ -197,7 +218,7 @@ export default function Profile() {
               <p>{listing.name }</p>
             </Link>
             <div className="flex flex-col items-center">
-              <button className="text-red-700 uppercase">DELETE</button>
+              <button type="button"  onClick={() => handleListingDelete(listing._id)}  className="text-red-700 uppercase">DELETE</button>
               <button className="text-green-700 uppercase">EDIT</button>
             </div>
           </div>
