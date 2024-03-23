@@ -225,7 +225,7 @@ export default function CreateListing() {
                 <p>Bathrooms</p>
             </div>
             <div className="flex items-center gap-2">
-                <input type="number" className='border border-gray-300 rounded-lg p-3 ' name="regularPrice" id="regularPrice" required placeholder='Rs.'min="2000" max="100000"
+                <input type="number" className='border border-gray-300 rounded-lg p-3 ' name="regularPrice" id="regularPrice" required placeholder='Rs.'min="2000" max="10000000"
                 onChange={handleChange}
                 value={formData.regularPrice}
                 />
@@ -239,7 +239,7 @@ export default function CreateListing() {
             { formData.offer 
                 && 
              <div className="flex items-center gap-2">
-             <input type="number" className='border border-gray-300 rounded-lg p-3 ' name="discountPrice" id="discountPrice" required placeholder='Rs.' min="0" max="100000"
+             <input type="number" className='border border-gray-300 rounded-lg p-3 ' name="discountPrice" id="discountPrice" required placeholder='Rs.' min="0" max="10000000"
              onChange={handleChange}
              value={formData.discountPrice}
              />
