@@ -64,8 +64,8 @@ export default function Search() {
       fetchListings();
     }, [location.search]);
 
-    console.log(sidebardata)
-    console.log(listings)
+    // console.log(sidebardata)
+    // console.log(listings)
     const navigate = useNavigate();
      const handleChange = (e) => {
     if (

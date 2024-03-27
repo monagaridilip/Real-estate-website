@@ -53,7 +53,7 @@ export default function Profile() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
           setFormData({ ...formData, avatar: downloadURL })
           );
-          console.log(formData.avatar)
+          // console.log(formData.avatar)
       }
     );
   };
@@ -74,7 +74,7 @@ export default function Profile() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data)
+      // console.log(data)
       if (data.success === false) {
         dispatch(updateUserFailure(data.errorMessage));
         return;
@@ -143,7 +143,7 @@ export default function Profile() {
       });
       const data = await res.json();
       if (data.success === false) {
-        console.log(data.message);
+        // console.log(data.message);
         return;
       }
 
@@ -151,7 +151,7 @@ export default function Profile() {
         prev.filter((listing) => listing._id !== listingId)
       );
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
   return (
